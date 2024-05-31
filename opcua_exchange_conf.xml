@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<OPCEX exchange_time="1">
+
+<!-- Define name and url for every OPC UA Server that participates in exchange -->
+<OPCServers>
+   <OPCServer name="Deck" url="opc.tcp://localhost:16701/" />
+   <OPCServer name="PLC" url="opc.tcp://192.168.0.20:4840" />
+</OPCServers>
+
+<OPCLinks>
+   <!-- Define an OPCLink_vars section for defining source and target Servers in exchange -->
+   <OPCLink_vars source="Deck" target="PLC">
+        <!-- Define corresponding source and target variables from respective Servers -->
+		<variable source="ns=4; s=Unit_Sterilizer_1.st1.batch_in_ster.signal" target="ns=4; i=5" type="Double" />
+        <variable source="ns=4; s=Unit_Sterilizer_1.st1.batch_ready.signal" target="ns=4; i=6" type="Double" />
+        <variable source="ns=4; s=Unit_Sterilizer_1.st1.TR" target="ns=4; i=7" type="Double" />
+        <variable source="ns=4; s=Cart_storage_1.n_carts" target="ns=4; i=11" type="Int32" />
+        <variable source="ns=4; s=TIME" target="ns=4; i=10" type="Double" />
+   </OPCLink_vars>
+  
+   <OPCLink_vars source="PLC" target="Deck">
+		<variable source="ns=4; i=3" target="ns=4; s=Cart_storage_1.start.signal" type="Double" />
+		<variable source="ns=4; i=4" target="ns=4; s=Cart_storage_1.v_carros" type="Double" />
+		<variable source="ns=4; i=8" target="ns=4; s=Unit_Sterilizer_1.v_st1.Ap.signal" type="Double" />
+		<variable source="ns=4; i=9" target="ns=4; s=Unit_Sterilizer_1.stage.signal" type="Double" />
+   </OPCLink_vars>
+
+</OPCLinks>
+
+</OPCEX>
