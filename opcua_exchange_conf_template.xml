@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- Define exchange time; value in seconds -->
+<OPCEX exchange_time="1">
+
+<!-- Define name and url for every OPC UA Server that participates in exchange -->
+<!-- Fill it with appropiate values -->
+<OPCServers>
+   <OPCServer name="Server_name_1" url="opc.tcp://IP1:PORT1/" />
+   <OPCServer name="Server_name_2" url="opc.tcp://IP2:PORT2" />
+</OPCServers>
+
+<OPCLinks>
+   <!-- Define an OPCLink_vars section for defining source and target Servers in exchange -->
+   <!-- Fill it with appropiate values and add as many OPCLinks as needed-->
+   <OPCLink_vars source="Server_name_1" target="Server_name_2">
+      <!-- Define corresponding source and target variables from respective Servers -->
+	    <!-- Fill it with appropiate values and add as many exchanges as needed-->
+		  <variable source="Source Node Id 1" target="Target Node Id 1" type="Double" />
+      <variable source="Source Node Id 2" target="Target Node Id 2" type="Int32" />
+    </OPCLink_vars>
+
+   <!-- Define an OPCLink_vars section for defining source and target Servers in exchange -->
+   <!-- Fill it with appropiate values and add as many OPCLinks as needed-->
+   <OPCLink_vars source="Server_name_2" target="Server_name_1">
+      <!-- Define corresponding source and target variables from respective Servers -->
+	    <!-- Fill it with appropiate values and add as many exchanges as needed-->
+		  <variable source="Source Node Id 1" target="Target Node Id 1" type="Double" />
+		  <variable source="Source Node Id 2" target="Target Node Id 2" type="Double" />
+		  <variable source="Source Node Id 3" target="Target Node Id 3" type="Double" />
+		</OPCLink_vars>
+
+</OPCLinks>
+
+</OPCEX>
